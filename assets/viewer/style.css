@@ -1,0 +1,355 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea4f 0%, #764ba259 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.controls {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.file-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.file-input-wrapper input[type="file"] {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.file-input-wrapper button {
+    padding: 10px 24px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-input-wrapper button:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+.status {
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.status.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.status.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.content {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    font-family: Georgia, serif;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* Styles pour le contenu HTML généré */
+.content h1 {
+    font-size: 2.5rem;
+    margin: 30px 0 20px;
+    color: #222;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.content h2 {
+    font-size: 2rem;
+    margin: 25px 0 15px;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.content h3 {
+    font-size: 1.5rem;
+    margin: 20px 0 12px;
+    color: #444;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.content h4 {
+    font-size: 1.2rem;
+    margin: 18px 0 10px;
+    color: #555;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.content p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+    /* L'alignement est maintenant géré par les styles inline */
+}
+
+.content ul,
+.content ol {
+    margin: 20px 0;
+    padding-left: 40px;
+}
+
+.content li {
+    margin: 10px 0;
+    font-size: 1.05rem;
+}
+
+.content blockquote {
+    border-left: 5px solid #667eea;
+    padding: 20px 30px;
+    margin: 30px 0;
+    background: #f8f9fa;
+    font-style: italic;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+}
+
+.content blockquote p {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.content blockquote footer {
+    font-size: 0.95rem;
+    color: #777;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.content figure {
+    margin: 35px 0;
+    /* L'alignement est maintenant géré par les styles inline */
+}
+
+.content figure > div {
+    /* Conteneur pour les images avec contrôle de largeur */
+}
+
+.content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
+.content figcaption {
+    margin-top: 12px;
+    font-style: italic;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.content .delimiter {
+    text-align: center;
+    font-size: 2rem;
+    margin: 40px 0;
+    color: #ccc;
+    letter-spacing: 10px;
+}
+
+.content .checklist {
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+
+.content .checklist li {
+    padding-left: 40px;
+    position: relative;
+    margin: 15px 0;
+    font-size: 1.05rem;
+}
+
+.content .checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 0;
+    font-size: 1.4rem;
+    color: #999;
+    top: -2px;
+}
+
+.content .checklist li.checked {
+    color: #666;
+    text-decoration: line-through;
+}
+
+.content .checklist li.checked::before {
+    content: '☑';
+    color: #667eea;
+}
+
+.content code {
+    background: #f4f4f4;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #d63384;
+}
+
+.content b,
+.content strong {
+    font-weight: 700;
+    color: #222;
+}
+
+.content i,
+.content em {
+    font-style: italic;
+}
+
+.content u {
+    text-decoration: underline;
+}
+
+/* Support pour les couleurs de texte personnalisées */
+.content span[style*="color"] {
+    /* Les couleurs inline sont préservées via l'attribut style */
+}
+
+.content span.cdx-text-color {
+    /* Classe pour les spans avec couleur */
+}
+
+.content ul ul,
+.content ol ol,
+.content ul ol,
+.content ol ul {
+    margin: 10px 0;
+    padding-left: 30px;
+}
+
+.content a {
+    color: #667eea;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.content a:hover {
+    border-bottom-color: #667eea;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.actions button {
+    padding: 12px 24px;
+    background: white;
+    color: #667eea;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .header,
+    .controls,
+    .actions {
+        display: none;
+    }
+
+    .content {
+        box-shadow: none;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 20px;
+    }
+
+    .content h1 {
+        font-size: 2rem;
+    }
+
+    .content h2 {
+        font-size: 1.6rem;
+    }
+}

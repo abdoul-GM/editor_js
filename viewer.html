@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viewer Editor.js - Rendu HTML depuis JSON</title>
+  <link rel="stylesheet" href="assets/viewer/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📄 Viewer Editor.js</h1>
+      <p>Affichage HTML à partir d'un fichier JSON</p>
+    </div>
+
+    <div class="controls">
+      <div class="file-input-wrapper">
+        <input type="file" id="jsonFile" accept=".json" />
+        <button onclick="loadDefaultFile()">📂 Charger article.json</button>
+      </div>
+      <div id="status" class="status"></div>
+    </div>
+
+    <div id="content" class="content">
+      <p style="text-align: center; color: #999; font-style: italic;">
+        Sélectionnez un fichier JSON ou cliquez sur "Charger article.json" pour commencer
+      </p>
+    </div>
+
+    <div class="actions">
+      <button onclick="printContent()">🖨️ Imprimer</button>
+      <button onclick="downloadHTML()">💾 Télécharger HTML</button>
+    </div>
+  </div>
+
+  <script src="assets/viewer/script.js"></script>
+</body>
+</html>
