@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea4f 0%, #764ba259 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+#editorjs {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    min-height: 400px;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+button {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.output {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.output h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.output pre {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+/* Styles pour Editor.js */
+.ce-block__content,
+.ce-toolbar__content {
+    max-width: 100%;
+}
+
+.codex-editor__redactor {
+    padding-bottom: 100px !important;
+}
+
+/* Styles pour le plugin Image */
+.simple-image {
+    margin: 20px 0;
+}
+
+.simple-image__picture {
+    text-align: center;
+}
+
+.simple-image__picture img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.simple-image__caption {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.simple-image__caption input {
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-style: italic;
+    color: #666;
+    padding: 5px;
+}
+
+.simple-image__upload {
+    padding: 40px;
+    background: #f9f9f9;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.simple-image__upload:hover {
+    background: #f0f0f0;
+    border-color: #667eea;
+}
+
+.simple-image__upload input[type="file"] {
+    display: none;
+}
+
+.simple-image__url-input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.simple-image__url-input:focus {
+    border-color: #667eea;
+}
+
+.simple-image__buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.simple-image__button {
+    flex: 1;
+    padding: 10px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.simple-image__button:hover {
+    background: #5568d3;
+    transform: translateY(-1px);
+}
+
+.simple-image__button--secondary {
+    background: #999;
+}
+
+.simple-image__button--secondary:hover {
+    background: #777;
+}
