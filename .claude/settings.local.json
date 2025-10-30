@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(python:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []

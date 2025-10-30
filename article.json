@@ -1,19 +1,21 @@
 {
-  "time": 1761839508556,
+  "time": 1761856685987,
   "blocks": [
     {
       "id": "-0bRXuOthH",
       "type": "header",
       "data": {
         "text": "SyC@D — <i><span data-color=\"#FF0000\" style=\"color: rgb(255, 0, 0);\">Système intégré du Cadastre et des Domaines</span></i>",
-        "level": 1
+        "level": 1,
+        "alignment": "right"
       }
     },
     {
       "id": "FqG2FW1AxZ",
       "type": "paragraph",
       "data": {
-        "text": "SyC@D (accessible via <a href=\"https://sif.bf\">sif.bf</a>) est la plateforme numérique nationale dédiée à la gestion des procédures cadastrales, domaniales et foncières. Elle vise à moderniser, s<i><b>écuriser et centraliser l’ensemble des opérations foncières au Burkina Faso.</b></i>"
+        "text": "SyC@D (accessible via <a href=\"https://sif.bf\">sif.bf</a>) est la plateforme numérique nationale dédiée à la gestion des procédures cadastrales, domaniales et foncières. Elle vise à moderniser, s<i><b>écuriser et centraliser l’ensemble des opérations foncières au Burkina Faso.</b></i>",
+        "alignment": "left"
       }
     },
     {
@@ -47,14 +49,16 @@
       "type": "header",
       "data": {
         "text": "Pourquoi <span data-color=\"#FF0000\" style=\"color: rgb(255, 0, 0);\">SyC@D</span> ?",
-        "level": 2
+        "level": 2,
+        "alignment": "center"
       }
     },
     {
       "id": "AtLc9rMiuF",
       "type": "paragraph",
       "data": {
-        "text": "La plateforme a été lancée officiellement pour réduire les délais et la paperasserie, renforcer la transparence des transactions foncières et diminuer les risques de fraude et de litiges. <span data-color=\"#FF1493\" style=\"color: rgb(255, 20, 147);\">SyC@D</span> centralise les données cadastrales et facilite le suivi des dossiers en ligne."
+        "text": "La plateforme a été lancée officiellement pour réduire les délais et la paperasserie, renforcer la transparence des transactions foncières et diminuer les risques de fraude et de litiges. <span data-color=\"#FF1493\" style=\"color: rgb(255, 20, 147);\">SyC@D</span> centralise les données cadastrales et facilite le suivi des dossiers en ligne.",
+        "alignment": "left"
       }
     },
     {
@@ -62,7 +66,8 @@
       "type": "header",
       "data": {
         "text": "Fonctionnalités principales",
-        "level": 2
+        "level": 2,
+        "alignment": "left"
       }
     },
     {
@@ -108,14 +113,16 @@
       "type": "header",
       "data": {
         "text": "Publics ciblés",
-        "level": 2
+        "level": 2,
+        "alignment": "right"
       }
     },
     {
       "id": "hCtr1tsmCK",
       "type": "paragraph",
       "data": {
-        "text": "<span data-color=\"#008000\" style=\"color: rgb(0, 128, 0);\">SyC@D s'adresse aux citoyens, investisseurs, services administratifs, notaires et agents fonciers qui ont besoin d'effectuer des démarches foncières, d'obtenir des documents officiels ou de consulter des informations cadastrales.</span>"
+        "text": "<span data-color=\"#008000\" style=\"color: rgb(0, 128, 0);\">SyC@D s'adresse aux citoyens, investisseurs, services administratifs, notaires et agents fonciers qui ont besoin d'effectuer des démarches foncières, d'obtenir des documents officiels ou de consulter des informations cadastrales.</span>",
+        "alignment": "left"
       }
     },
     {
@@ -123,7 +130,8 @@
       "type": "header",
       "data": {
         "text": "Avantages pour les usagers",
-        "level": 2
+        "level": 2,
+        "alignment": "left"
       }
     },
     {
@@ -169,14 +177,16 @@
       "type": "header",
       "data": {
         "text": "Déploiement et accompagnement",
-        "level": 2
+        "level": 2,
+        "alignment": "left"
       }
     },
     {
       "id": "k_vECFHJTb",
       "type": "paragraph",
       "data": {
-        "text": "Au lancement officiel (21 mars 2025), les autorités ont indiqué que des cellules d'accompagnement et des guides utilisateurs étaient mis en place pour aider les usagers à s'approprier la plateforme et que d'autres modules seraient progressivement intégrés pour arriver à un Livre foncier électronique centralisé."
+        "text": "Au lancement officiel (21 mars 2025), les autorités ont indiqué que des cellules d'accompagnement et des guides utilisateurs étaient mis en place pour aider les usagers à s'approprier la plateforme et que d'autres modules seraient progressivement intégrés pour arriver à un Livre foncier électronique centralisé.",
+        "alignment": "left"
       }
     },
     {
@@ -184,14 +194,16 @@
       "type": "header",
       "data": {
         "text": "Accéder à SyC@D / Contact",
-        "level": 2
+        "level": 2,
+        "alignment": "right"
       }
     },
     {
       "id": "6qUPp_-9wy",
       "type": "paragraph",
       "data": {
-        "text": "Pour accéder à la plateforme, rendez-vous sur <a href=\"https://sif.bf\">https://sif.bf</a>. Pour toute question ou assistance : contact@sif.bf (ou le contact indiqué sur le site officiel)."
+        "text": "Pour accéder à la plateforme, rendez-vous sur <a href=\"https://sif.bf\">https://sif.bf</a>. Pour toute question ou assistance : contact@sif.bf (ou le contact indiqué sur le site officiel).",
+        "alignment": "left"
       }
     },
     {
@@ -199,14 +211,16 @@
       "type": "header",
       "data": {
         "text": "Conclusion",
-        "level": 2
+        "level": 2,
+        "alignment": "left"
       }
     },
     {
       "id": "Kyymq_g2br",
       "type": "paragraph",
       "data": {
-        "text": "SyC@D représente une avancée majeure pour la gestion foncière au Burkina Faso : il modernise les procédures, améliore la sécurité juridique des transactions et facilite l'accès aux services fonciers pour les citoyens et investisseurs."
+        "text": "SyC@D représente une avancée majeure pour la gestion foncière au Burkina Faso : il modernise les procédures, améliore la sécurité juridique des transactions et facilite l'accès aux services fonciers pour les citoyens et investisseurs.",
+        "alignment": "left"
       }
     },
     {
@@ -214,7 +228,8 @@
       "type": "header",
       "data": {
         "text": "Les Documents\n\n",
-        "level": 2
+        "level": 2,
+        "alignment": "left"
       }
     },
     {

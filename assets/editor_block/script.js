@@ -1132,6 +1132,7 @@ class ColorTool {
 }
 
 // Wrapper pour Paragraph avec support de l'alignement
+// Wrapper pour Paragraph avec support de l'alignement
 class ParagraphWithAlignment {
     constructor({ data, config, api, block }) {
         this.api = api;
@@ -1139,16 +1140,14 @@ class ParagraphWithAlignment {
         this._data = data || {};
         this.config = config || {};
 
+        // Stocker l'alignement dans une propriété d'instance
+        this._alignment = this._data.alignment || 'left';
+
         // Créer l'élément de paragraphe
         this._element = document.createElement('div');
         this._element.contentEditable = true;
         this._element.dataset.placeholder = config.placeholder || '';
         this._element.innerHTML = this._data.text || '';
-
-        // Appliquer l'alignement sauvegardé
-        if (this._data.alignment) {
-            this._element.style.textAlign = this._data.alignment;
-        }
     }
 
     render() {
@@ -1175,11 +1174,18 @@ class ParagraphWithAlignment {
             button.title = align.name;
             button.classList.toggle(
                 this.api.styles.settingsButtonActive,
-                (this._element.style.textAlign || 'left') === align.value
+                this._alignment === align.value
             );
 
             button.addEventListener('click', () => {
-                this._element.style.textAlign = align.value;
+                // Mettre à jour la propriété d'instance
+                this._alignment = align.value;
+
+                // Appliquer sur le wrapper parent (ce-block__content)
+                const blockWrapper = this._element.closest('.ce-block__content');
+                if (blockWrapper) {
+                    blockWrapper.style.textAlign = align.value;
+                }
 
                 // Mettre à jour les boutons
                 wrapper.querySelectorAll('span').forEach(btn => {
@@ -1195,9 +1201,13 @@ class ParagraphWithAlignment {
     }
 
     save(blockContent) {
+        // Lire l'alignement depuis le wrapper parent
+        const blockWrapper = blockContent.closest('.ce-block__content');
+        const alignment = blockWrapper ? blockWrapper.style.textAlign : this._alignment;
+
         return {
             text: blockContent.innerHTML,
-            alignment: blockContent.style.textAlign || 'left'
+            alignment: alignment || 'left'
         };
     }
 
@@ -1241,13 +1251,11 @@ class HeaderWithAlignment {
         this.defaultLevel = this.config.defaultLevel || 2;
         this.currentLevel = this._data.level || this.defaultLevel;
 
+        // Stocker l'alignement dans une propriété d'instance
+        this._alignment = this._data.alignment || 'left';
+
         // Créer l'élément de header
         this._element = this._createHeaderElement();
-
-        // Appliquer l'alignement sauvegardé
-        if (this._data.alignment) {
-            this._element.style.textAlign = this._data.alignment;
-        }
     }
 
     _createHeaderElement() {
@@ -1260,6 +1268,14 @@ class HeaderWithAlignment {
     }
 
     render() {
+        // Appliquer l'alignement sur le wrapper après le rendu
+        setTimeout(() => {
+            const blockWrapper = this._element.closest('.ce-block__content');
+            if (blockWrapper) {
+                blockWrapper.style.textAlign = this._alignment;
+            }
+        }, 0);
+
         return this._element;
     }
 
@@ -1285,11 +1301,14 @@ class HeaderWithAlignment {
             button.addEventListener('click', () => {
                 this.currentLevel = level;
                 const newElement = this._createHeaderElement();
-                if (this._element.style.textAlign) {
-                    newElement.style.textAlign = this._element.style.textAlign;
-                }
                 this._element.replaceWith(newElement);
                 this._element = newElement;
+
+                // Réappliquer l'alignement sur le wrapper
+                const blockWrapper = this._element.closest('.ce-block__content');
+                if (blockWrapper) {
+                    blockWrapper.style.textAlign = this._alignment;
+                }
 
                 // Mettre à jour les boutons
                 levelsWrapper.querySelectorAll('span').forEach((btn, idx) => {
@@ -1322,11 +1341,18 @@ class HeaderWithAlignment {
             button.title = align.name;
             button.classList.toggle(
                 this.api.styles.settingsButtonActive,
-                (this._element.style.textAlign || 'left') === align.value
+                this._alignment === align.value
             );
 
             button.addEventListener('click', () => {
-                this._element.style.textAlign = align.value;
+                // Mettre à jour la propriété d'instance
+                this._alignment = align.value;
+
+                // Appliquer sur le wrapper parent (ce-block__content)
+                const blockWrapper = this._element.closest('.ce-block__content');
+                if (blockWrapper) {
+                    blockWrapper.style.textAlign = align.value;
+                }
 
                 // Mettre à jour les boutons
                 alignWrapper.querySelectorAll('span').forEach(btn => {
@@ -1345,10 +1371,14 @@ class HeaderWithAlignment {
     }
 
     save(blockContent) {
+        // Lire l'alignement depuis le wrapper parent
+        const blockWrapper = blockContent.closest('.ce-block__content');
+        const alignment = blockWrapper ? blockWrapper.style.textAlign : this._alignment;
+
         return {
             text: blockContent.innerHTML,
             level: this.currentLevel,
-            alignment: blockContent.style.textAlign || 'left'
+            alignment: alignment || 'left'
         };
     }
 
@@ -1376,9 +1406,36 @@ class HeaderWithAlignment {
     }
 }
 
+// ============================================
+// Fonction pour charger les données depuis article.json
+// ============================================
+async function loadArticleData() {
+    try {
+        console.log('📂 Chargement de article.json...');
+        const response = await fetch('article.json');
+
+        if (!response.ok) {
+            throw new Error(`Impossible de charger article.json (${response.status})`);
+        }
+
+        const data = await response.json();
+        console.log('✓ Données chargées depuis article.json');
+        console.log(`   → ${data.blocks.length} blocs trouvés`);
+        return data;
+    } catch (error) {
+        console.error('✗ Erreur lors du chargement de article.json:', error);
+        console.warn('⚠️  Utilisation de données vides. Lancez start_server.bat pour charger article.json');
+
+        // Retourner des données vides en cas d'erreur
+        return {
+            blocks: []
+        };
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     // Attendre que tous les scripts soient chargés
-    setTimeout(() => {
+    setTimeout(async () => {
         // Récupération des classes depuis window
         const Header = window.Header;
         const NestedList = window.NestedList;
@@ -1408,14 +1465,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "SyC@D — <i><span data-color=\"#FF0000\" style=\"color: rgb(255, 0, 0);\">Système intégré du Cadastre et des Domaines</span></i>",
-                            "level": 1
+                            "level": 1,
+                            "alignment": "right"
                         }
                     },
                     {
                         "id": "FqG2FW1AxZ",
                         "type": "paragraph",
                         "data": {
-                            "text": "SyC@D (accessible via <a href=\"https://sif.bf\">sif.bf</a>) est la plateforme numérique nationale dédiée à la gestion des procédures cadastrales, domaniales et foncières. Elle vise à moderniser, s<i><b>écuriser et centraliser l’ensemble des opérations foncières au Burkina Faso.</b></i>"
+                            "text": "SyC@D (accessible via <a href=\"https://sif.bf\">sif.bf</a>) est la plateforme numérique nationale dédiée à la gestion des procédures cadastrales, domaniales et foncières. Elle vise à moderniser, s<i><b>écuriser et centraliser l’ensemble des opérations foncières au Burkina Faso.</b></i>",
+                            "alignment": "left"
                         }
                     },
                     {
@@ -1449,14 +1508,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "Pourquoi <span data-color=\"#FF0000\" style=\"color: rgb(255, 0, 0);\">SyC@D</span> ?",
-                            "level": 2
+                            "level": 2,
+                            "alignment": "center"
                         }
                     },
                     {
                         "id": "AtLc9rMiuF",
                         "type": "paragraph",
                         "data": {
-                            "text": "La plateforme a été lancée officiellement pour réduire les délais et la paperasserie, renforcer la transparence des transactions foncières et diminuer les risques de fraude et de litiges. <span data-color=\"#FF1493\" style=\"color: rgb(255, 20, 147);\">SyC@D</span> centralise les données cadastrales et facilite le suivi des dossiers en ligne."
+                            "text": "La plateforme a été lancée officiellement pour réduire les délais et la paperasserie, renforcer la transparence des transactions foncières et diminuer les risques de fraude et de litiges. <span data-color=\"#FF1493\" style=\"color: rgb(255, 20, 147);\">SyC@D</span> centralise les données cadastrales et facilite le suivi des dossiers en ligne.",
+                            "alignment": "left"
                         }
                     },
                     {
@@ -1464,7 +1525,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "Fonctionnalités principales",
-                            "level": 2
+                            "level": 2,
+                            "alignment": "left"
                         }
                     },
                     {
@@ -1510,14 +1572,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "Publics ciblés",
-                            "level": 2
+                            "level": 2,
+                            "alignment": "right"
                         }
                     },
                     {
                         "id": "hCtr1tsmCK",
                         "type": "paragraph",
                         "data": {
-                            "text": "<span data-color=\"#008000\" style=\"color: rgb(0, 128, 0);\">SyC@D s'adresse aux citoyens, investisseurs, services administratifs, notaires et agents fonciers qui ont besoin d'effectuer des démarches foncières, d'obtenir des documents officiels ou de consulter des informations cadastrales.</span>"
+                            "text": "<span data-color=\"#008000\" style=\"color: rgb(0, 128, 0);\">SyC@D s'adresse aux citoyens, investisseurs, services administratifs, notaires et agents fonciers qui ont besoin d'effectuer des démarches foncières, d'obtenir des documents officiels ou de consulter des informations cadastrales.</span>",
+                            "alignment": "left"
                         }
                     },
                     {
@@ -1525,7 +1589,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "Avantages pour les usagers",
-                            "level": 2
+                            "level": 2,
+                            "alignment": "left"
                         }
                     },
                     {
@@ -1571,14 +1636,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "Déploiement et accompagnement",
-                            "level": 2
+                            "level": 2,
+                            "alignment": "left"
                         }
                     },
                     {
                         "id": "k_vECFHJTb",
                         "type": "paragraph",
                         "data": {
-                            "text": "Au lancement officiel (21 mars 2025), les autorités ont indiqué que des cellules d'accompagnement et des guides utilisateurs étaient mis en place pour aider les usagers à s'approprier la plateforme et que d'autres modules seraient progressivement intégrés pour arriver à un Livre foncier électronique centralisé."
+                            "text": "Au lancement officiel (21 mars 2025), les autorités ont indiqué que des cellules d'accompagnement et des guides utilisateurs étaient mis en place pour aider les usagers à s'approprier la plateforme et que d'autres modules seraient progressivement intégrés pour arriver à un Livre foncier électronique centralisé.",
+                            "alignment": "left"
                         }
                     },
                     {
@@ -1586,14 +1653,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "Accéder à SyC@D / Contact",
-                            "level": 2
+                            "level": 2,
+                            "alignment": "right"
                         }
                     },
                     {
                         "id": "6qUPp_-9wy",
                         "type": "paragraph",
                         "data": {
-                            "text": "Pour accéder à la plateforme, rendez-vous sur <a href=\"https://sif.bf\">https://sif.bf</a>. Pour toute question ou assistance : contact@sif.bf (ou le contact indiqué sur le site officiel)."
+                            "text": "Pour accéder à la plateforme, rendez-vous sur <a href=\"https://sif.bf\">https://sif.bf</a>. Pour toute question ou assistance : contact@sif.bf (ou le contact indiqué sur le site officiel).",
+                            "alignment": "left"
                         }
                     },
                     {
@@ -1601,14 +1670,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "Conclusion",
-                            "level": 2
+                            "level": 2,
+                            "alignment": "left"
                         }
                     },
                     {
                         "id": "Kyymq_g2br",
                         "type": "paragraph",
                         "data": {
-                            "text": "SyC@D représente une avancée majeure pour la gestion foncière au Burkina Faso : il modernise les procédures, améliore la sécurité juridique des transactions et facilite l'accès aux services fonciers pour les citoyens et investisseurs."
+                            "text": "SyC@D représente une avancée majeure pour la gestion foncière au Burkina Faso : il modernise les procédures, améliore la sécurité juridique des transactions et facilite l'accès aux services fonciers pour les citoyens et investisseurs.",
+                            "alignment": "left"
                         }
                     },
                     {
@@ -1616,7 +1687,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         "type": "header",
                         "data": {
                             "text": "Les Documents\n\n",
-                            "level": 2
+                            "level": 2,
+                            "alignment": "left"
                         }
                     },
                     {
