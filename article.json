@@ -1,5 +1,5 @@
 {
-  "time": 1761856685987,
+  "time": 1761858708902,
   "blocks": [
     {
       "id": "-0bRXuOthH",
@@ -15,7 +15,7 @@
       "type": "paragraph",
       "data": {
         "text": "SyC@D (accessible via <a href=\"https://sif.bf\">sif.bf</a>) est la plateforme numérique nationale dédiée à la gestion des procédures cadastrales, domaniales et foncières. Elle vise à moderniser, s<i><b>écuriser et centraliser l’ensemble des opérations foncières au Burkina Faso.</b></i>",
-        "alignment": "left"
+        "alignment": "right"
       }
     },
     {
@@ -122,7 +122,7 @@
       "type": "paragraph",
       "data": {
         "text": "<span data-color=\"#008000\" style=\"color: rgb(0, 128, 0);\">SyC@D s'adresse aux citoyens, investisseurs, services administratifs, notaires et agents fonciers qui ont besoin d'effectuer des démarches foncières, d'obtenir des documents officiels ou de consulter des informations cadastrales.</span>",
-        "alignment": "left"
+        "alignment": "right"
       }
     },
     {
@@ -186,7 +186,7 @@
       "type": "paragraph",
       "data": {
         "text": "Au lancement officiel (21 mars 2025), les autorités ont indiqué que des cellules d'accompagnement et des guides utilisateurs étaient mis en place pour aider les usagers à s'approprier la plateforme et que d'autres modules seraient progressivement intégrés pour arriver à un Livre foncier électronique centralisé.",
-        "alignment": "left"
+        "alignment": "right"
       }
     },
     {
@@ -220,7 +220,7 @@
       "type": "paragraph",
       "data": {
         "text": "SyC@D représente une avancée majeure pour la gestion foncière au Burkina Faso : il modernise les procédures, améliore la sécurité juridique des transactions et facilite l'accès aux services fonciers pour les citoyens et investisseurs.",
-        "alignment": "left"
+        "alignment": "right"
       }
     },
     {
